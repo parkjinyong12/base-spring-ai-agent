@@ -1,6 +1,6 @@
 package com.example.agent.controller;
 
-import com.example.agent.domain.AiChatOptions;
+import com.example.agent.dto.ChatOptionsResponse;
 import com.example.agent.service.ChatOptionsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,14 @@ public class ChatOptionsController {
     }
 
     @GetMapping
-    public List<AiChatOptions> getAll() {
-        return chatOptionsService.getAll();
+    public List<ChatOptionsResponse> getAll() {
+        return chatOptionsService.getAll().stream()
+                .map(ChatOptionsResponse::from)
+                .toList();
     }
 
     @PutMapping("/{id}/default")
-    public AiChatOptions setDefault(@PathVariable Long id) {
-        return chatOptionsService.setDefault(id);
+    public ChatOptionsResponse setDefault(@PathVariable Long id) {
+        return ChatOptionsResponse.from(chatOptionsService.setDefault(id));
     }
 }

@@ -1,4 +1,4 @@
-package com.example.agent.agent;
+package com.example.agent.infrastructure;
 
 import org.springframework.ai.anthropic.AnthropicChatModel;
 import org.springframework.ai.anthropic.AnthropicChatOptions;

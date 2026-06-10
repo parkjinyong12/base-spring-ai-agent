@@ -1,4 +1,4 @@
-package com.example.agent.config;
+package com.example.agent.controller;
 
 import com.example.agent.agent.SimpleAgent;
 import com.example.agent.dto.ChatRequest;

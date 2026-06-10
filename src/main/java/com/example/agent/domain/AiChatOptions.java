@@ -14,6 +14,12 @@ public class AiChatOptions {
     private String name;
 
     @Column(nullable = false)
+    private String provider;
+
+    @Column(name = "api_key", nullable = false)
+    private String apiKey;
+
+    @Column(nullable = false)
     private String model;
 
     @Column(name = "max_tokens", nullable = false)
@@ -27,8 +33,11 @@ public class AiChatOptions {
 
     protected AiChatOptions() {}
 
-    public AiChatOptions(String name, String model, Integer maxTokens, Double temperature, boolean defaultFlag) {
+    public AiChatOptions(String name, String provider, String apiKey, String model,
+                         Integer maxTokens, Double temperature, boolean defaultFlag) {
         this.name = name;
+        this.provider = provider;
+        this.apiKey = apiKey;
         this.model = model;
         this.maxTokens = maxTokens;
         this.temperature = temperature;
@@ -37,6 +46,8 @@ public class AiChatOptions {
 
     public Long getId() { return id; }
     public String getName() { return name; }
+    public String getProvider() { return provider; }
+    public String getApiKey() { return apiKey; }
     public String getModel() { return model; }
     public Integer getMaxTokens() { return maxTokens; }
     public Double getTemperature() { return temperature; }

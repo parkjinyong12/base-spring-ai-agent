@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: base-spring-ai-agent
+  ai:
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-opus-4-8
+          max-tokens: 1024
+
+server:
+  port: 8080

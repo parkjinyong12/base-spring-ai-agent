@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class ChatModelFactory {
 
-    // provider:apiKey 조합으로 캐싱 - 요청마다 HTTP 클라이언트를 새로 생성하지 않기 위해
     private final ConcurrentHashMap<String, ChatModel> cache = new ConcurrentHashMap<>();
 
     public ChatModel getOrCreate(String provider, String apiKey) {
@@ -23,14 +22,18 @@ public class ChatModelFactory {
 
     private ChatModel create(String provider, String apiKey) {
         return switch (provider) {
-            case "anthropic" -> new AnthropicChatModel(
-                    new AnthropicApi(apiKey),
-                    AnthropicChatOptions.builder().build()
-            );
-            case "openai" -> new OpenAiChatModel(
-                    new OpenAiApi(apiKey),
-                    OpenAiChatOptions.builder().build()
-            );
+            case "anthropic" -> AnthropicChatModel.builder()
+                    .anthropicApi(AnthropicApi.builder()
+                            .apiKey(apiKey)
+                            .build())
+                    .defaultOptions(AnthropicChatOptions.builder().build())
+                    .build();
+            case "openai" -> OpenAiChatModel.builder()
+                    .openAiApi(OpenAiApi.builder()
+                            .apiKey(apiKey)
+                            .build())
+                    .defaultOptions(OpenAiChatOptions.builder().build())
+                    .build();
             default -> throw new IllegalArgumentException("지원하지 않는 provider: " + provider);
         };
     }

@@ -1,6 +1,7 @@
 package com.example.agent.agent;
 
 import com.example.agent.domain.AiChatOptions;
+import com.example.agent.infrastructure.ChatModelFactory;
 import com.example.agent.service.ChatOptionsService;
 import org.springframework.ai.anthropic.AnthropicChatOptions;
 import org.springframework.ai.chat.model.ChatModel;

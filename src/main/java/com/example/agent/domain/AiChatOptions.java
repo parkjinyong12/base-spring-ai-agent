@@ -54,4 +54,14 @@ public class AiChatOptions {
     public boolean isDefaultFlag() { return defaultFlag; }
 
     public void setDefaultFlag(boolean defaultFlag) { this.defaultFlag = defaultFlag; }
+
+    public void update(String name, String provider, String apiKey, String model,
+                       Integer maxTokens, Double temperature) {
+        this.name = name;
+        this.provider = provider;
+        this.apiKey = apiKey;
+        this.model = model;
+        this.maxTokens = maxTokens;
+        this.temperature = temperature;
+    }
 }
